@@ -53,9 +53,9 @@ fun PhoneLogin() {
         }
         Button(onClick = {
             val options = PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
-//                .setPhoneNumber("+16505551234")
-                .setPhoneNumber("+886 985109872")
-                .setTimeout(120L, TimeUnit.SECONDS) // Timeout and unit
+                .setPhoneNumber("+16505551234")
+//                .setPhoneNumber("+886 985109872")
+                .setTimeout(10L, TimeUnit.SECONDS) // Timeout and unit
                 .setActivity(context as Activity)
                 .setCallbacks(callbacks) //
                 .build()

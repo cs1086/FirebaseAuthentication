@@ -19,7 +19,19 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            println("FirebaseAuth.getInstance()=${FirebaseAuth.getInstance().currentUser}")
+            val user = FirebaseAuth.getInstance().currentUser
+            if (user != null && ((user?.providerData?.map { it.providerId }
+                    ?.contains("phone") == true) || user?.isEmailVerified == true)) {
+
+            }
+            println(
+                "####FirebaseAuth.getInstance().currentUser=${user},verify=${user?.isEmailVerified},userinfo=${
+                    FirebaseAuth.getInstance().currentUser?.providerData?.map { it.providerId }
+                        ?.contains("phone")
+                }"
+            )
+
+
             FirebaseAuthenticationTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -39,9 +51,9 @@ fun Greeting(name: String) {
 //    FacebookLogin()//Facebook登入
 //    GoogleLogin()//Google登入
 //    EmailPasswordLogin()//Email密碼登入
-//    PhoneLogin()//電話登入
+    PhoneLogin()//電話登入
 //    ProviderLink()//多重帳號綁定
-    ProviderLinkByPhone()//電話綁定帳號
+//    ProviderLinkByPhone()//電話綁定帳號
 }
 
 @Preview(showBackground = true)
